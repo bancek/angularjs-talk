@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+    <section>
+        <br>
+<h1>
+    <span style="">angularJS</span>
+    <br>
+</h1>
+<p>
+<br>
+</p>
+<p>Luka Zakrajšek</p>
+<p>@bancek</p>
+<p>
+<br>
+</p>
+<p>First JavaScript meetup in Ljubljana<br>
+</p>
+<p>
+<br>
+</p>
+<p>April 30, 2013</p>
+
+</section>
+        <section>
+            <h2>Hi</h2>
+            <div>
+                <br>
+            </div>
+            <div>I'm Luka</div>
+            <div>
+                <br>
+            </div>
+            <div>In web development for more than 7 years</div>
+            <div>
+                <br>
+            </div>
+            <div>I work at Koofr</div>
+        </section>
+        <section>
+            <h2>
+    Javascript apps<br>don't have to be messy</h2>
+<div>
+    <br>
+</div>
+<div>
+    <img src="img/mess.jpg" style="height: 300px;">
+    <br>
+</div>
+
+
+
+
+
+</section>
+            <section>
+                <h2>aNGULAR'S philosophy</h2>
+<div>
+    <br>
+    </div>
+<div>
+    <ul>
+    <li>Decouple DOM manipulation from app logic<br>
+        <br>
+    </li>
+    <li>Code reusage<br>
+        <br>
+    </li>
+    <li>Make common tasks trivial and<br>
+        <span style="letter-spacing: -0.02em;">difficult tasks possible<br>
+            <br>
+        </span>
+    </li>
+    <li>
+        <span style="letter-spacing: -0.02em;">Not a library</span>
+    </li>
+        
+    </ul>
+</div>
+
+</section>
+                <section>
+                    <h2>Modules</h2>
+                    <div>
+                        <br>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>Split your application into multiple files<br>
+                                <br>
+                            </li>
+                            <li>No global namespace manipulation<br>
+                                <br>
+                            </li>
+                            <li>Doesn't limit you with files structure</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h2>$scope</h2>
+                    <div>($scope)</div>
+                    <div>
+                        <br>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>
+                                <span style="text-align: center;">
+                                    <span style="letter-spacing: -0.02em;">One $rootScope<br>
+                                        <br>
+                                    </span>
+                                </span>
+                            </li>
+                            <li>
+                                <span style="text-align: center;">
+                                    <span style="letter-spacing: -0.02em;">Every controller gets its own scope<br>and inherits data from parent controller<br>
+                                        <br>
+                                    </span>
+                                </span>
+                            </li>
+                            <li>
+                                <span style="text-align: center;">
+                                    <span style="letter-spacing: -0.02em;">Every directive gets new $scope<br>that is isolated from others</span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h2>Data binding</h2>
+                    <div>JS:</div>
+                    <div>$scope.comment.user = 'Author'</div>
+                    <div>
+                        <br>
+                    </div>
+                    <div>HTML:</div>
+                    <div>{{ comment.user }}</div>
+                </section>
+                <section>
+                    <h2>URL routing</h2>
+<div>
+    <br>
+</div>
+<pre><code>.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/home', {
+    templateUrl: 'partials/home.html',
+    controller: 'HomeController'
+  });
+
+  $routeProvider.when('/comments', {
+    templateUrl: 'partials/comments.html',
+    controller: 'CommentsController'
+  });
+
+  $routeProvider.otherwise({
+    redirectTo: '/home'
+  });
+}]);</code></pre>
+</section>
+                <section>
+                    <h2>Controllers</h2>
+                    <div>
+                        <br>
+                    </div>
+<pre><code>.controller('CommentsController', function($scope, Comment) {
+  Comment.query(function(res) {
+    res.reverse();
+    $scope.comments = res;
+  });
+
+  $scope.post = function(){
+    $scope.comments.unshift({
+      name: $scope.user.name,
+      email: $scope.user.email,
+      content: $scope.comment
+    });
+
+    $scope.comment = '';
+  }
+})</code></pre>
+</section>
+                <section>
+                    <h2>Models</h2>
+                    <div>
+                        <br>
+                    </div>
+<pre><code>.factory('Comment', function($resource) {
+  return $resource('/app/api/comments.json');
+})</code></pre>
+
+</section>
+                <section>
+                    <h2>Filters</h2>
+<div>
+    <br>
+</div>
+<pre><code>.filter('gravatar', function() {
+  return function(email, size) {
+    var hash = $().crypt({
+      method: 'md5',
+      source: email
+    });
+
+    return "http://secure.gravatar.com/avatar/" + hash + ".jpg?s=" + size + "&amp;d=identicon";
+  };
+})</code></pre>
+
+
+</section>
+                <section>
+                    <h2>Directives</h2>
+<div>
+    <br>
+</div>
+<pre><code>.directive('hasFocus', function($timeout) {
+  return function(scope, elm, attrs) {
+    scope.$watch(attrs.hasFocus, function(value) {
+      if (value) {
+        $timeout(function(){
+          elm.focus();
+        }, 0);
+      }
+    });
+  };
+})</code></pre>
+
+
+</section>
+                <section>
+                    <h2>DIRECTIVES</h2>
+<div>
+    <br>
+</div>
+<pre><code>.directive('debug', function() {
+  return {
+    restrict: 'E',
+    scope: {
+      data: '=',
+      title: '@',
+    },
+    templateUrl: 'partials/debug.html',
+    controller: function($scope, $element) {
+
+    }
+  };
+})</code></pre>
+
+
+
+</section>
+                <section>
+                    <h2>DIRECTIVES</h2>
+<div>
+    debug.html
+</div>
+<pre><code>&lt;h4&gt;{{ title }}:&lt;/h4&gt;
+
+&lt;pre&gt;{{ data | cleanData | json }}&lt;/pre&gt;</code></pre>
+<div>
+                <br>
+            </div>
+            <div>
+Usage:
+</div>
+<pre><code>&lt;debug data="user" title="User"&gt;&lt;/debug&gt;</code></pre>
+</section>
+        <section>
+            <h2>Testing</h2>
+<div>
+<ul>
+    <li>Unit testing</li>
+    <li>End to end testing &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</li>
+</ul>
+</div>
+<div>
+    <br>
+</div>
+<pre><code>it('should reverse greeting', function() {
+  expect(binding('greeting|reverse')).toEqual('olleh');
+  input('greeting').enter('ABC');
+  expect(binding('greeting|reverse')).toEqual('CBA');
+});</code></pre>
+
+
+
+
+
+
+
+</section>
+        <section>
+            <h2>Demo</h2>
+            <div>
+                <br>
+            </div>
+            <div>
+                <ul>
+                    <li>Sample application<br>
+                        <br>
+                    </li>
+                    <li>Some code<br>
+                        <br>
+                    </li>
+                    <li>Chrome plugin<br><br></li>
+                    <li>Code available on Github: <a href="https://github.com/bancek/angularjs-talk">https://github.com/bancek/angularjs-talk</a></li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
