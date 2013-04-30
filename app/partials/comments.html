@@ -1,0 +1,43 @@
+<h3 class="muted">AngularJS Demo</h3>
+
+<div class="row-fluid">
+  <div class="span8">
+
+    <p>Name: <input type="text" ng-model="user.name" has-focus="loaded" /></p>
+    <p>Email: <input type="text" ng-model="user.email" /></p>
+
+    <div class="comments">
+      <form class="form-inline">
+        <div class="row-fluid">
+          <div class="span9">
+            <textarea ng-model="comment" class="span12" placeholder="Enter your comment ..."></textarea>
+          </div>
+          <div class="span3">
+            <button ng-click="post()" class="btn span12" type="submit">Send</button>
+          </div>
+        </div>
+      </form>
+      
+      <div ng-repeat="comment in comments | orderBy:'':false">
+        <div class="comment">
+          <img ng-src="{{ comment.email | gravatar:40 }}" class="comment-icon" title="{{ comment.author }}" />
+          <div class="comment-body">
+            <p class="author"><a href="">{{ comment.name }}</a></p>
+            <div class="content">{{ comment.content }}</div>
+          </div>
+        </div>
+        <hr ng-hide="$last" />
+      </div>
+    </div>
+
+  </div>
+  <div class="span4">
+
+    <debug data="user" title="User"></debug>
+
+    <debug data="comment" title="Comment"></debug>
+
+    <debug data="this" title="$scope"></debug>
+
+  </div>
+</div>

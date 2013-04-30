@@ -1,0 +1,48 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.container-narrow {
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+.comments textarea {
+  height: 80px;
+  width: 100%;
+}
+
+.comment-icon {
+  float: left;
+  width: 40px;
+}
+
+.comment-body {
+  padding-left: 46px;
+}
+
+.comments .comment {
+  *zoom:1;
+}
+
+.comments .comment:before,
+.comments .comment:after {
+  display: table;
+  content: "";
+}
+
+.comment .author {
+  margin-bottom: 3px;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: bold;
+}
+
+.comment .content {
+  margin: 0;
+}
